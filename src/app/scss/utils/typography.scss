@@ -1,0 +1,11 @@
+@layer base {
+    body {
+        font-family: var(--font-numans);
+        p {
+            font-family: var(--font-numans);
+        }
+        @include all-headings {
+            font-family: var(--font-ubuntu);
+        }
+    }
+}

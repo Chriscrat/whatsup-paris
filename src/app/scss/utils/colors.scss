@@ -1,0 +1,63 @@
+@layer base {
+    .text {
+        &-gradient {
+            &-linear {
+                &-primary {
+                    &-to-secondary {
+                        background: var(--linearPrimarySecondary);
+                        background-clip: text;
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                    }
+                    &-to-accent {
+                        background: var(--linearPrimaryAccent);
+                        -webkit-background-clip: text;
+                        background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                    }
+                }
+                &__secondary {
+                    &-accent {
+                        background: var(--linearSecondaryAccent);
+                        background-clip: text;
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                    }
+                }
+            }
+            &-radial {
+                &-primary {
+                    &-to-secondary {
+                        background: var(--radialPrimarySecondary);
+                        background-clip: text;
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                    }
+                    &-to-accent {
+                        background: var(--radialPrimaryAccent);
+                        background-clip: text;
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                    }
+                }
+                &-secondary {
+                    &-to-accent {
+                        background: var(--radialSecondaryAccent);
+                        background-clip: text;
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                    }
+                }
+            }
+        }
+        &-primary {
+            color: var(--primary);
+        }
+        &-secondary {
+            color: var(--secondary);
+        }
+        &-accent {
+            color: var(--accent);
+        }
+    }
+}

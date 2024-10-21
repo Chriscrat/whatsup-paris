@@ -1,0 +1,8 @@
+// Get all headings (h1 to h6)
+@mixin all-headings {
+    @for $index from 1 through 6 {
+        h#{$index} {
+            @content;
+        }
+    }
+}

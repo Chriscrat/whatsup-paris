@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import '@/app/scss/globals.scss';
+import Footer from './components/layouts/Footer';
+import Header from './components/layouts/Header';
 
 const ubuntu = localFont({
     src: [
@@ -46,7 +48,13 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="fr">
-            <body className={`${numans.variable} ${ubuntu.variable} antialiased`}>{children}</body>
+            <body className={`${numans.variable} ${ubuntu.variable} antialiased`}>
+                <Header/>
+                <main>
+                    {children}
+                </main>
+                <Footer/>
+            </body>
         </html>
     );
 }

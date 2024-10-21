@@ -15,7 +15,7 @@ const Page: React.FC = () => {
                             className="object-contain"
                         />
                     </div>
-                    <h1 className="text-4xl font-bold">What&apos;s Up Paris</h1>
+                    <h1 className="text-4xl font-bold">What&apos;s up Paris</h1>
                 </div>
             </header>
 
@@ -23,11 +23,19 @@ const Page: React.FC = () => {
                 className="relative h-screen bg-fixed bg-center bg-cover"
                 style={{ backgroundImage: "url(Paris-background.jpg)" }}
             >
-                <div className="absolute inset-0 bg-black opacity-60"></div>
-                <div className="relative z-10 flex items-center justify-center h-full">
-                    <h2 className="text-white text-5xl font-bold">
-                        Bienvenue à Paris
-                    </h2>
+                <div className="absolute inset-0 bg-black opacity-70"></div>
+                <div className="relative flex items-center flex-col justify-center h-full">
+                        <Image
+                            src="/Whats-up-paris.png"
+                            alt="What's Up Paris"
+                            width={300}
+                            height={300}
+                            className="object-contain"
+                        />
+                    <h1 className="text-5xl font-bold">
+                        What's Up 
+                    </h1>
+                    <span className="text-gradient-linear-primary-to-accent text-9xl">Paris</span>
                 </div>
             </section>
 

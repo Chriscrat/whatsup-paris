@@ -48,7 +48,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="fr">
-            <body className={`${numans.variable} ${ubuntu.variable} antialiased`}>
+            <body className={`${numans.variable} ${ubuntu.variable} relative bg-background antialiased`}>
                 <Header/>
                 <main>
                     {children}

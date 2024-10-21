@@ -60,4 +60,16 @@
             color: var(--accent);
         }
     }
+
+    .bg {
+        &-primary {
+            background: var(--primary);
+        }
+        &-secondary {
+            background: var(--secondary);
+        }
+        &-accent {
+            background: var(--accent);
+        }
+    }
 }

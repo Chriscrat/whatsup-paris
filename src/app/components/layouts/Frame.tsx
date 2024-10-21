@@ -1,12 +1,12 @@
 'use client';
 
-interface SectionProps {
+interface FrameProps {
     title?: string,
     className?: string;
     children: React.ReactNode
 }
 
-export default function Section(props: SectionProps) {
+export default function Frame(props: FrameProps) {
     const title = props.title ? props.title[0].toLocaleUpperCase() + props.title.slice(1).replace(' ', '-') : null;
     return (
         <section className={`${props.className}`}>

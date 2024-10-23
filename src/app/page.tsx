@@ -1,9 +1,9 @@
-import React from 'react';
 import Image from 'next/image';
-
 import Frame from '@/app/components/layouts/Frame';
+import SearchFilterForm from '@/app/components/forms/SearchFilterForm';
+import EventsList from '@/app/components/eventsList/EventList';
 
-const Page: React.FC = () => {
+const Page: React.FC = async () => {
     return (
         <div>
             <Frame className="relative">
@@ -30,10 +30,19 @@ const Page: React.FC = () => {
                 title="Bienvenue"
                 className="relative py-10 px-8 md:px-12 lg:px-24"
             >
-                <p className="text-lg ">
+                <p className="text-lg py-4">
                     En manque d&apos;inspiration pour vos sorties à Paris ? Vous êtes au bon endroit ! Découvrez les événements, les lieux
                     et les activités à ne pas manquer dans la capitale française.
                 </p>
+
+                <div className="w-full h-full pt-8">
+                    <div className="rounded-xl p-6 shadow-lg bg-theme-900">
+                        <div className="flex flex-auto lg:px-2 lg:py-2">
+                            <SearchFilterForm/>
+                            <EventsList/>
+                        </div>
+                    </div>
+                </div>
             </Frame>
         </div>
     );

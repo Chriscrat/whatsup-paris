@@ -1,6 +1,6 @@
 export default function Footer() {
     return (
-        <footer className="relative w-full">
+        <footer className="w-full">
             <div className="flex justify-center p-5">
                 <span className="text-lg sm:text-center text-accent">
                     ©Copyright 2024 {' '}

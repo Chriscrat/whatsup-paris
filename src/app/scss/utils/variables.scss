@@ -7,65 +7,114 @@
     --accent: hsl(128, 35%, 64%);
 
     // SHADES
-    --text-50: hsl(32, 68%, 95%);
-    --text-100: hsl(33, 69%, 90%);
-    --text-200: hsl(32, 69%, 80%);
-    --text-300: hsl(32, 69%, 70%);
-    --text-400: hsl(32, 68%, 60%);
-    --text-500: hsl(32, 68%, 50%);
-    --text-600: hsl(32, 68%, 40%);
-    --text-700: hsl(32, 69%, 30%);
-    --text-800: hsl(32, 69%, 20%);
-    --text-900: hsl(33, 69%, 10%);
-    --text-950: hsl(32, 68%, 5%);
+    $textShades: (
+        50: hsl(32, 68%, 5%),
+        100: hsl(33, 69%, 10%),
+        200: hsl(32, 69%, 20%),
+        300: hsl(32, 69%, 30%),
+        400: hsl(32, 68%, 40%),
+        500: hsl(32, 68%, 50%),
+        600: hsl(32, 68%, 60%),
+        700: hsl(32, 69%, 70%),
+        800: hsl(32, 69%, 80%),
+        900: hsl(33, 69%, 90%),
+        950: hsl(32, 68%, 95%)
+    );
 
-    --background-50: hsl(30, 100%, 95%);
-    --background-100: hsl(31, 100%, 90%);
-    --background-200: hsl(30, 100%, 80%);
-    --background-300: hsl(30, 100%, 70%);
-    --background-400: hsl(30, 100%, 60%);
-    --background-500: hsl(30, 100%, 50%);
-    --background-600: hsl(30, 100%, 40%);
-    --background-700: hsl(30, 100%, 30%);
-    --background-800: hsl(30, 100%, 20%);
-    --background-900: hsl(31, 100%, 10%);
-    --background-950: hsl(30, 100%, 5%);
+    @each $textShade, $color in $textShades {
+        .text-theme-#{$textShade} {
+            color: $color;
+        }
+    }
 
-    --primary-50: hsl(26, 92%, 95%);
-    --primary-100: hsl(27, 88%, 90%);
-    --primary-200: hsl(27, 88%, 80%);
-    --primary-300: hsl(27, 90%, 70%);
-    --primary-400: hsl(27, 89%, 60%);
-    --primary-500: hsl(27, 89%, 50%);
-    --primary-600: hsl(27, 89%, 40%);
-    --primary-700: hsl(27, 90%, 30%);
-    --primary-800: hsl(27, 88%, 20%);
-    --primary-900: hsl(27, 88%, 10%);
-    --primary-950: hsl(29, 92%, 5%);
+    $backgroundShades: (
+        50: hsl(30, 100%, 5%),
+        100: hsl(31, 100%, 10%),
+        200: hsl(30, 100%, 20%),
+        300: hsl(30, 100%, 30%),
+        400: hsl(30, 100%, 40%),
+        500: hsl(30, 100%, 50%),
+        600: hsl(30, 100%, 60%),
+        700: hsl(30, 100%, 70%),
+        800: hsl(30, 100%, 80%),
+        900: hsl(31, 100%, 90%),
+        950: hsl(30, 100%, 95%)
+    );
 
-    --secondary-50: hsl(107, 36%, 95%);
-    --secondary-100: hsl(106, 33%, 90%);
-    --secondary-200: hsl(107, 35%, 80%);
-    --secondary-300: hsl(106, 35%, 70%);
-    --secondary-400: hsl(106, 35%, 60%);
-    --secondary-500: hsl(106, 35%, 50%);
-    --secondary-600: hsl(106, 35%, 40%);
-    --secondary-700: hsl(106, 35%, 30%);
-    --secondary-800: hsl(107, 35%, 20%);
-    --secondary-900: hsl(106, 33%, 10%);
-    --secondary-950: hsl(107, 36%, 5%);
+    @each $backgroundShade, $color in $backgroundShades {
+        .bg-theme-#{$backgroundShade} {
+            background-color: $color;
+        }
+    }
 
-    --accent-50: hsl(127, 36%, 95%);
-    --accent-100: hsl(127, 33%, 90%);
-    --accent-200: hsl(128, 35%, 80%);
-    --accent-300: hsl(128, 35%, 70%);
-    --accent-400: hsl(128, 35%, 60%);
-    --accent-500: hsl(128, 35%, 50%);
-    --accent-600: hsl(128, 35%, 40%);
-    --accent-700: hsl(128, 35%, 30%);
-    --accent-800: hsl(128, 35%, 20%);
-    --accent-900: hsl(127, 33%, 10%);
-    --accent-950: hsl(127, 36%, 5%);
+    $primaryShades: (
+        50: hsl(26, 92%, 95%),
+        100: hsl(27, 88%, 90%),
+        200: hsl(27, 88%, 80%),
+        300: hsl(27, 90%, 70%),
+        400: hsl(27, 89%, 60%),
+        500: hsl(27, 89%, 50%),
+        600: hsl(27, 89%, 40%),
+        700: hsl(27, 90%, 30%),
+        800: hsl(27, 88%, 20%),
+        900: hsl(27, 88%, 10%),
+        950: hsl(29, 92%, 5%)
+    );
+
+    @each $primaryShade, $color in $primaryShades {
+        .text-secondary-theme-#{$primaryShade} {
+            color: $color;
+        }
+        .bg-primary-theme-#{$primaryShade} {
+            background-color: $color;
+        }
+    }
+
+    $secondaryShades: (
+        50: hsl(107, 36%, 95%),
+        100: hsl(106, 33%, 90%),
+        200: hsl(107, 35%, 80%),
+        300: hsl(106, 35%, 70%),
+        400: hsl(106, 35%, 60%),
+        500: hsl(106, 35%, 50%),
+        600: hsl(106, 35%, 40%),
+        700: hsl(106, 35%, 30%),
+        800: hsl(107, 35%, 20%),
+        900: hsl(106, 33%, 10%),
+        950: hsl(107, 36%, 5%)
+    );
+
+    @each $secondaryShade, $color in $secondaryShades {
+        .text-secondary-theme-#{$secondaryShade} {
+            color: $color;
+        }
+        .bg-secondary-theme-#{$secondaryShade} {
+            background-color: $color;
+        }
+    }
+
+    $accentShades: (
+        50: hsl(127, 36%, 95%),
+        100: hsl(127, 33%, 90%),
+        200: hsl(128, 35%, 80%),
+        300: hsl(128, 35%, 70%),
+        400: hsl(128, 35%, 60%),
+        500: hsl(128, 35%, 50%),
+        600: hsl(128, 35%, 40%),
+        700: hsl(128, 35%, 30%),
+        800: hsl(128, 35%, 20%),
+        900: hsl(127, 33%, 10%),
+        950: hsl(127, 36%, 5%)
+    );
+
+    @each $accentShade, $color in $accentShades {
+        .text-accent-theme-#{$accentShade} {
+            color: $color;
+        }
+        .bg-accent-theme-#{$accentShade} {
+            background-color: $color;
+        }
+    }
 
     --linearPrimarySecondary: linear-gradient(var(--primary), var(--secondary));
     --linearPrimaryAccent: linear-gradient(var(--primary), var(--accent));

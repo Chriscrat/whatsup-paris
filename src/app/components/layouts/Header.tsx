@@ -4,8 +4,6 @@ import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
-
-
 export default function Header() {
     const isHome = usePathname() === '/';
 

@@ -1,5 +1,3 @@
-'use client';
-
 interface FrameProps {
     title?: string,
     className?: string;
@@ -13,9 +11,7 @@ export default function Frame(props: FrameProps) {
             <div className="flex flex-col justify-around h-screen">
                 {title  ?
                     <h1 className="text-4xl text-left">
-                        <span className="text-accent">
-                            {title}
-                        </span>
+                        {title}
                     </h1>
                     : ''
                 }

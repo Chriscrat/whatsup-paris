@@ -1,15 +1,20 @@
-## What's Up Paris ?
+<img src="./public/Whats-up-paris.png" alt="Alt *text*" title="What's up Paris ?!*" width="200" height="200"> 
 
-First, run the development server:
+# What's Up Paris ?
+
+What'up Paris is a website to search for tourist information (entertainment, cinema, art, ...)
+
+It build with React.js and TypeScript and powered by Next.js framework
+
+## Installation
+
+Use the package manager [npm](https://www.npmjs.com/) to install the web application.
+
 
 ```bash
+npm ci
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

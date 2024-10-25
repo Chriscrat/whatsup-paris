@@ -1,11 +1,12 @@
 type CardEventProps = {
-    image: string;
-    title: string;
-    place: string;
-    dateStart: string;
-    dateEnd: string;
-    description: string;
-    className?: string;
+    image: string,
+    title: string,
+    url: string,
+    place: string,
+    dateStart: string,
+    dateEnd: string,
+    description: string,
+    className?: string,
 };
 
 export default function CardEvent(props: CardEventProps) {
@@ -21,31 +22,30 @@ export default function CardEvent(props: CardEventProps) {
     }
 
     return (
-        <div className={`${props.className} flex flex-col my-2 w-80 relative h-[300px] z-0 rounded-xl bg-accent overflow-hidden `}>
+        <div className="group flex flex-col w-48 relative h-[192px] z-0 rounded-xl bg-secondary hover:bg-primary overflow-hidden transform duration-300 hover:shadow-lg hover:scale-150 hover:z-10">
             <div
-                className={`group bg-no-repeat bg-cover h-[300px]`}
+                className="bg-no-repeat bg-cover h-[160px] w-[192px]"
                 style={{ backgroundImage: `url(${props.image})` }}
             >
-                <div className="relative top-0 left-0 w-full h-full z-10 bg-black/50 flex items-center justify-between flex-col gap-15">
-                    <h2 className="group-hover:hidden text-xl font-bold text-white p-6">{props.title}</h2>
+                <div className="relative top-0 left-0 w-full h-full z-10 bg-black/50 flex items-center justify-between flex-col">
+                    <h2 className="group-hover:hidden text-sm font-bold text-white pt-4 px-2">{props.title}</h2>
                     {props.place ? (
-                        <p className="group-hover:hidden text-white flex w-full py-2 pr-8 justify-end text-sm items-center">
-                            <span className="material-symbols-outlined text-lg pr-2">location_city</span>
+                        <p className="group-hover:hidden text-white flex w-full justify-end text-sm items-center pr-4">
+                            <span className="material-symbols-outlined text-lg pr-1">location_city</span>
                             {props.place}
                         </p>
                     ) : (
                         ''
                     )}
                     <div
-                        className="p-8 group-hover:block hidden h-[180px] text-ellipsis text-white overflow-hidden"
+                        className="absolute left-0 top-0 w-full pt-4 px-2 hidden h-[160px] text-ellipsis text-white text-sm overflow-hidden group-hover:block group-hover:line-clamp-3"
                         dangerouslySetInnerHTML={{ __html: props.description }}
                     />
                 </div>
             </div>
-            <div className="flex justify-around items-center px-2 py-2 text-md">
+            <div className="group-hover:hidden flex justify-around items-center text-xs ">
                 {props.dateStart ? (
                     <p className="text-black flex items-center p-2 text-center ">
-                        <span className="material-symbols-outlined text-4xl">date_range</span>
                         {formatDate(props.dateStart)}
                     </p>
                 ) : (
@@ -53,7 +53,7 @@ export default function CardEvent(props: CardEventProps) {
                 )}
                 {props.dateEnd ? (
                     <>
-                        <span className="material-symbols-outlined text-4xl">trending_flat</span>
+                        <span className="material-symbols-outlined">trending_flat</span>
                         <p className="text-black flex p-2">
                             {formatDate(props.dateEnd)}
                         </p>
@@ -62,6 +62,16 @@ export default function CardEvent(props: CardEventProps) {
                     ''
                 )}
             </div>
+            <a 
+                className="group-hover:flex hidden text-xs items-center flex-grow justify-around"
+                href={props.url}
+                target="blank"
+            >
+                Visiter l&apos;évènement
+                <span className="material-symbols-outlined animate-bounce">
+                    send
+                </span>
+            </a>
         </div>
     );
 }

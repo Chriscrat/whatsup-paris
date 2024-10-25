@@ -68,6 +68,9 @@
         .bg-primary-theme-#{$primaryShade} {
             background-color: $color;
         }
+        .border-primary-theme-#{$primaryShade} {
+            border-color: $color;
+        }
     }
 
     $secondaryShades: (
@@ -91,6 +94,9 @@
         .bg-secondary-theme-#{$secondaryShade} {
             background-color: $color;
         }
+        .border-secondary-theme-#{$secondaryShade} {
+            border-color: $color;
+        }
     }
 
     $accentShades: (
@@ -113,6 +119,9 @@
         }
         .bg-accent-theme-#{$accentShade} {
             background-color: $color;
+        }
+        .border-accent-theme-#{$accentShade} {
+            border-color: $color;
         }
     }
 

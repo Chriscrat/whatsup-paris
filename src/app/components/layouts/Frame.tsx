@@ -1,7 +1,7 @@
 interface FrameProps {
-    title?: string,
+    title?: string;
     className?: string;
-    children: React.ReactNode
+    children: React.ReactNode;
 }
 
 export default function Frame(props: FrameProps) {
@@ -9,13 +9,8 @@ export default function Frame(props: FrameProps) {
     return (
         <section className={`${props.className}`}>
             <div className="flex flex-col justify-around h-screen">
-                {title  ?
-                    <h1 className="text-4xl text-left">
-                        {title}
-                    </h1>
-                    : ''
-                }
-                { props.children }
+                {title && <h1 className="text-4xl text-left">{title}</h1>}
+                {props.children}
             </div>
         </section>
     );

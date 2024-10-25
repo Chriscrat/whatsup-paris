@@ -1,16 +1,30 @@
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { buildMapUrl } from '@/app/store/slices/catalogSlice';
+import { RootState, AppDispatch } from '@/app/store/eventList';
+
 interface MapProps {
     className: string,
-}
+};
 
 export default function Map(props: MapProps) {
-    const OPENDATA_API_URL='https://opendata.paris.fr';
-    const MAP_API=`${OPENDATA_API_URL}/explore/embed/dataset/que-faire-a-paris-/map/?basemap=jawg.dark&location=13,48.86003,2.35004`;
+    const dispatch = useDispatch<AppDispatch>();
+    const [mapUrl, setMapUrl] = useState('');
+
+    const { catalogData } = useSelector((state: RootState) => state.catalog);
+
+    useEffect(() => {
+        const url = dispatch(buildMapUrl());
+        setMapUrl(url);
+    }, [dispatch, catalogData]);
 
     return (
-        <iframe
-            src={MAP_API} 
-            className={`${props.className} w-full`}
-            height={1000}
-        />
+        mapUrl !== '' && (
+            <iframe
+                src={mapUrl} 
+                className={`${props.className} w-full`}
+                height={1000}
+            />
+        )
     );
 };

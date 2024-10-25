@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import Checkbox from '@/app/components/forms/filters/components/Checkbox';
 
 interface GroupCheckboxFilterProps {
-    title: string,
-    filters: Array<object>,
+    title: 'tags' | 'address_name' | 'address_zipcode' | 'address_city',
+    filters: Array<{ name: string }>,
 }
 
 export default function GroupCheckboxFilter(props: GroupCheckboxFilterProps) {
@@ -18,20 +18,34 @@ export default function GroupCheckboxFilter(props: GroupCheckboxFilterProps) {
 
     return (
         <div className="flex flex-col py-4">
-            <h2 className='text-2xl text-accent'>{props.title}</h2>
+            <h2 className='text-xl text-accent pb-2'>{props.title}</h2>
             {props.filters.map((filter, index) => (
                 <Checkbox
                     key={index}
+                    filterType={props.title}
                     text={filter.name}
                     className={index >= MAX_FILTERS && !displayMore ? 'hidden' : ''}
                 />
             ))}
             {props.filters.length > MAX_FILTERS && (
                 <button
-                    className="text-md bg-accent rounded-md w-24 py-1 mt-2 text-center"
+                    className="flex items-center justify-center text-xs bg-accent rounded-md w-24 py-1 mt-2 shadow-sm"
                     onClick={toggleDisplayMore}
                 >
-                    {displayMore ? 'Voir moins' : 'Voir plus'}
+                    {displayMore ? <>
+                            <span className="material-symbols-outlined text-sm">
+                                keyboard_double_arrow_up
+                            </span>
+                            Voir moins
+                        </>
+                    : 
+                        <>
+                            <span className="material-symbols-outlined text-sm">
+                                keyboard_double_arrow_down
+                            </span>
+                            Voir plus
+                        </>
+                    }
                 </button>
             )}
         </div>

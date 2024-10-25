@@ -1,95 +1,78 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCatalog } from '@/app/store/slices/catalogSlice';
+import { RootState, AppDispatch } from '@/app/store/eventList';
 
-import CardEvent from "@/app/components/eventsList/views/CardEvent";
-import { getCatalog } from '@/app/api/openParisApi';
-
-type event = {
-    id: string,
-    url: string,
-    cover_url: string,
-    title: string,
-    date_start: string,
-    date_end: string,
-    description: string,
-    address_name: string,
-    address_zipcode: string,
-    address_city: string,
-}
+import CardEvent from '@/app/components/eventsList/views/CardEvent';
+import Toast from '@/app/components/Toast';
 
 interface ListProps {
-    className: string,
+    className: string;
 }
 
 const List = (props: ListProps) => {
-    const [data, setData] = useState<any[]>([]); // To store fetched data
-    const [limit] = useState(20); // Set the limit of items per API request
-    const [offset, setOffset] = useState(20); // Track the current offset
-    const [isLoading, setIsLoading] = useState(false); // To prevent multiple calls during scrolling
-    const MAX_EVENT_LIMIT = 100;
-    let newData = Array<event>();
-    let filters = {'tags': ['BD', 'Cirque']};
+    const dispatch = useDispatch<AppDispatch>();
+    const { catalogData, loading, error } = useSelector((state: RootState) => state.catalog);
+    useEffect(() => {
+        // Dispatch the fetchCatalog thunk with a limit and some filters
+        dispatch(fetchCatalog());
+    }, [dispatch]);
 
-    // Function to handle fetching more data
-    const loadMoreData = async () => {
-        if (!isLoading) {
-            setIsLoading(true); // Set loading to true while fetching
-            if (limit < MAX_EVENT_LIMIT) {
-                setOffset((prevOffset) => prevOffset + limit); // Update the offset for the next call
-                const response = await getCatalog(offset, filters);
-                newData = response.results ? response.results.map((item: any) => ({
-                    id: item.id,
-                    url: item.url,
-                    cover_url: item.cover_url,
-                    title: item.title,
-                    date_start: item.date_start,
-                    date_end: item.date_end,
-                    description: item.description,
-                    address_name: item.address_name,
-                    address_zipcode: item.address_zipcode,
-                    address_city: item.address_city,
-                })) : [];
-                setData(newData); // Append the new data
-            }
-            setIsLoading(false); // Set loading to false after fetching
-        }
-    };
-
-    // Function to detect if the user has scrolled to the bottom
+    const BOTTOM_OFFSET = 250;
     const handleScroll = () => {
         const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-        if (scrollTop + clientHeight >= scrollHeight - 5 && !isLoading) {
-            // When near the bottom, load more data
-            loadMoreData();
+        if (scrollTop + clientHeight >= scrollHeight - BOTTOM_OFFSET && !loading) {
+            dispatch(fetchCatalog());
         }
     };
 
-    // Attach scroll event listener
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [isLoading, offset]); // Dependency on isLoading and offset to avoid unnecessary calls
+    });
 
-    useEffect(() => {
-        loadMoreData(); // Load initial data on component mount
-    }, []); 
-    console.log(data);
     return (
-        <div className={`${props.className} flex justify-center flex-wrap gap-4`}>
-            {data ? data.map(event => (
-                <CardEvent
-                    key={event.id}
-                    title={event.title}
-                    place={event.address_city}
-                    image={event.cover_url}
-                    description={event.description}
-                    dateStart={event.date_start}
-                    dateEnd={event.date_end}
-                /> 
-            )) : '' }
+        <div className={`${props.className} flex xs:justify-center md:justify-center lg:justify-start flex-wrap gap-4`}>
+            {catalogData &&
+                catalogData.results &&
+                catalogData.results.map((event) => (
+                    <CardEvent
+                        key={event.id}
+                        url={event.url}
+                        title={event.title}
+                        place={event.address_city}
+                        image={event.cover_url}
+                        description={event.description}
+                        dateStart={event.date_start}
+                        dateEnd={event.date_end}
+                    />
+                ))}
+
+            {
+                <Toast trigger={loading}>
+                    <div className="flex items-center">
+                        <span className="animate-spin material-symbols-outlined mr-2">hourglass_empty</span>
+                        Chargement de nouveaux évènements ...
+                    </div>
+                </Toast>
+            }
+
+            {error && (
+                <Toast
+                    trigger={true}
+                    duration={3000}
+                    type='info'
+                >
+                    <div className="flex items-center">
+                        <span className="material-symbols-outlined mr-2">error</span>
+                        {error}
+                    </div>
+                </Toast>
+            )}
         </div>
     );
 };

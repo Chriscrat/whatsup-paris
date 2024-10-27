@@ -24,7 +24,7 @@ export default function GroupCheckboxFilter(props: GroupCheckboxFilterProps) {
                     key={index}
                     filterType={props.title}
                     text={filter.name}
-                    className={index >= MAX_FILTERS && !displayMore ? 'hidden' : ''}
+                    className={`transition-all duration-500 ${index >= MAX_FILTERS && !displayMore ? 'max-h-0 overflow-hidden' : 'max-h-10'}`}
                 />
             ))}
             {props.filters.length > MAX_FILTERS && (

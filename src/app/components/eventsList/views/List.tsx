@@ -36,7 +36,7 @@ const List = (props: ListProps) => {
     });
 
     return (
-        <div className={`${props.className} flex xs:justify-center md:justify-center lg:justify-start flex-wrap gap-4`}>
+        <div className={`${props.className} flex justify-center lg:justify-start flex-wrap gap-4`}>
             {catalogData &&
                 catalogData.results &&
                 catalogData.results.map((event) => (

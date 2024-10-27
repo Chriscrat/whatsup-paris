@@ -22,15 +22,15 @@ export default function CardEvent(props: CardEventProps) {
     }
 
     return (
-        <div className="group flex flex-col w-48 relative h-[192px] z-0 rounded-xl bg-secondary hover:bg-primary overflow-hidden transform duration-300 hover:shadow-lg hover:scale-150 hover:z-10">
+        <div className="group/card flex flex-col w-[320px] md:w-[192px] relative h-[192px] z-0 rounded-xl bg-secondary hover:bg-primary overflow-hidden transform duration-300 hover:shadow-lg hover:scale-110 md:hover:scale-150 hover:z-10">
             <div
-                className="bg-no-repeat bg-cover h-[160px] w-[192px]"
+                className="bg-no-repeat bg-cover h-[160px] w-[320px] md:w-[192px]"
                 style={{ backgroundImage: `url(${props.image})` }}
             >
                 <div className="relative top-0 left-0 w-full h-full z-10 bg-black/50 flex items-center justify-between flex-col">
-                    <h2 className="group-hover:hidden text-sm font-bold text-white pt-4 px-2">{props.title}</h2>
+                    <h2 className="group-hover/card:hidden text-sm font-bold text-white pt-4 px-2">{props.title}</h2>
                     {props.place ? (
-                        <p className="group-hover:hidden text-white flex w-full justify-end text-sm items-center pr-4">
+                        <p className="group-hover/card:hidden text-white flex w-full justify-end text-sm items-center pr-4">
                             <span className="material-symbols-outlined text-lg pr-1">location_city</span>
                             {props.place}
                         </p>
@@ -38,12 +38,12 @@ export default function CardEvent(props: CardEventProps) {
                         ''
                     )}
                     <div
-                        className="absolute left-0 top-0 w-full pt-4 px-2 hidden h-[160px] text-ellipsis text-white text-sm overflow-hidden group-hover:block group-hover:line-clamp-3"
+                        className="absolute left-0 top-0 w-full pt-4 px-2 hidden h-[160px] text-ellipsis text-white text-sm overflow-hidden group-hover/card:block group-hover/card:line-clamp-3"
                         dangerouslySetInnerHTML={{ __html: props.description }}
                     />
                 </div>
             </div>
-            <div className="group-hover:hidden flex justify-around items-center text-xs ">
+            <div className="group-hover/card:hidden flex justify-around items-center text-md md:text-xs">
                 {props.dateStart ? (
                     <p className="text-black flex items-center p-2 text-center ">
                         {formatDate(props.dateStart)}
@@ -63,13 +63,13 @@ export default function CardEvent(props: CardEventProps) {
                 )}
             </div>
             <a 
-                className="group-hover:flex hidden text-xs items-center flex-grow justify-around"
+                className="group/event-button animate-pulse group-hover/card:flex hidden transition-all duration-500 bg-gradient-to-r to-green-200 via-orange-500 from-orange-500 bg-size-200 bg-pos-0 hover:bg-pos-100 text-md md:text-xs items-center flex-grow justify-around"
                 href={props.url}
                 target="blank"
             >
                 Visiter l&apos;évènement
-                <span className="material-symbols-outlined animate-bounce">
-                    send
+                <span className="material-symbols-outlined group-hover/event-button:animate-bounce">
+                    captive_portal
                 </span>
             </a>
         </div>

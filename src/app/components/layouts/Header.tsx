@@ -27,7 +27,7 @@ export default function Header() {
     return (
         <header className={header || !isHome ? `fixed w-full top-0 left-0 z-10 bg-primary shadow-md` : 'hidden'}>
             <div className="flex items-center py-4 bg-transparent">
-                <div className="size-16 shrink-0 grow-0 relative rounded-full">
+                <div className="size-12 sm:size-16 shrink-0 grow-0 relative rounded-full">
                     <Image
                         src="/Whats-up-paris.png"
                         alt="What's Up Paris"

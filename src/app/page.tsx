@@ -1,9 +1,8 @@
 import Image from 'next/image';
 import Frame from '@/app/components/layouts/Frame';
-import SearchFilterForm from '@/app/components/forms/SearchFilterForm';
-import EventsList from '@/app/components/eventsList/EventList';
+import SearchEngine from '@/app/components/searchEngine/SearchEngine';
 
-const Page: React.FC = async () => {
+const Page: React.FC = () => {
     return (
         <div>
             <Frame className="relative">
@@ -41,7 +40,7 @@ const Page: React.FC = async () => {
 
             <Frame
                 title="Bienvenue"
-                className="relative py-10 px-12"
+                className="relative py-10 px-2 sm:p-12 xs:p-12"
             >
                 <p className="text-lg py-4">
                     En manque d&apos;inspiration pour vos sorties à Paris ? Vous êtes au bon endroit ! Découvrez les événements, les lieux
@@ -49,12 +48,7 @@ const Page: React.FC = async () => {
                 </p>
 
                 <div className="w-full h-full pt-8">
-                    <div className="rounded-xl p-6 shadow-lg bg-theme-900">
-                        <div className="flex flex-auto lg:px-2 lg:py-2">
-                            <SearchFilterForm/>
-                            <EventsList/>
-                        </div>
-                    </div>
+                    <SearchEngine/>
                 </div>
             </Frame>
         </div>

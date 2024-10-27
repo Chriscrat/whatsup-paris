@@ -18,12 +18,35 @@ export default function Map(props: MapProps) {
         setMapUrl(url);
     }, [dispatch, catalogData]);
 
+    
+    const getHeight = () => {
+        if (window.innerWidth >= 1024) {
+            return 1000;
+        } else if (window.innerWidth >= 768) {
+            return 800;
+        } else {
+            return 450;
+        }
+    };
+
+    const [height, setHeight] = useState(getHeight());
+
+    useEffect(() => {
+        const handleResize = () => {
+            setHeight(getHeight());
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
     return (
         mapUrl !== '' && (
             <iframe
                 src={mapUrl} 
                 className={`${props.className} w-full`}
-                height={1000}
+                height={height}
             />
         )
     );

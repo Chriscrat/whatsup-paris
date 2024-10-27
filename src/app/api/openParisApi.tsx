@@ -13,12 +13,13 @@ const FILTERS_ENUM = [
 ];
 
 type Filter = {
-    name: string,
+    id: string;
+    name: string;
 };
 
-type filterList = { [key: string]: string[] };
+type FilterList = { [key: string]: string[] };
 
-const getFormattedFilters = (filters: filterList, view: string): string => {
+const getFormattedFilters = (filters: FilterList, view: string): string => {
     const separator = view === 'list' ? ':' : '=';
     return filters ? `&` + Object.keys(filters).map((filter) => {
         return filters[filter].map((value: string) => {
@@ -31,13 +32,14 @@ const getFormattedFilters = (filters: filterList, view: string): string => {
     }).join('&') : '';
 }
 
-const getMapUrl = (filters: filterList): string => {
+const getMapUrl = (filters: FilterList): string => {
     const additionnalFilters = getFormattedFilters(filters, 'map')
     const disjunctiveList = '?disjunctive.tags&disjunctive.address_name&disjunctive.address_zipcode&disjunctive.address_city&disjunctive.pmr&disjunctive.blind&disjunctive.deaf&disjunctive.price_type&disjunctive.access_type&disjunctive.programs'
     const location = '&location=9,48.73355,2.45819';
     return encodeURI(`${MAP_API}/${disjunctiveList}${location}${additionnalFilters}`);
 }
 
+// const getFacetsList = async (): Promise<{ [key: string]: Filter[] }> => {
 const getFacetsList = async (): Promise<{ [key: string]: Filter[] }> => {
     const disjunctiveFilters = FILTERS_ENUM.map((filter, index) => (index >= 1 ? '&' : '?') + `disjunctive.${filter}=true`).join('');
     const dataset = '&dataset=que-faire-a-paris-';
@@ -61,7 +63,7 @@ const getFacetsList = async (): Promise<{ [key: string]: Filter[] }> => {
     return filterList;
 };
 
-const getCatalog = async (limit:number, filters:filterList): Promise<{ [key: string]: Filter[] }> => {
+const getCatalog = async (limit:number, filters:FilterList): Promise<{ [key: string]: Filter[] }> => {
     const additionnalFilters = getFormattedFilters(filters, 'list');
     const catalogApiUrl = encodeURI(`${CATALOG_API}?limit=${limit > CATALOG_DATA_LIMIT ? CATALOG_DATA_LIMIT : limit}&${additionnalFilters}`);
     const result = await fetch(catalogApiUrl);

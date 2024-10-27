@@ -1,19 +1,42 @@
 import GroupCheckboxFilter from '@/app/components/forms/filters/GroupCheckboxFilter';
-import {getFacetsList} from '@/app/api/openParisApi';
+import { getFacetsList } from '@/app/api/openParisApi';
+import { useEffect, useState } from 'react';
 
-export default async function SearchFilterForm() {    
-    const filterList = await getFacetsList();
+type SearchFilterFormProps = {
+    className?: string;
+};
+
+type Filter = {
+    id: string;
+    name: string;
+};
+
+type FiltersList = { 
+    [key: string]: Filter[];
+}
+
+type FilterType = 'tags' | 'address_name' | 'address_zipcode' | 'address_city';
+
+export default function SearchFilterForm(props: SearchFilterFormProps) {
+    const [filters, setFilters] = useState<FiltersList>({});
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await getFacetsList();
+            setFilters(data);
+        };
+        fetchData();
+    }, []);
 
     return (
-        <div className="flex flex-col w-1/5">
-            <h2 className="text-4xl font-bold">Filtres</h2>
-            {Object.keys(filterList).map((filterKey) => (
+        <div className={`${props.className} flex-col`}>
+            {Object.keys(filters).map((filterKey) => (
                 <GroupCheckboxFilter
                     key={filterKey}
-                    title={filterKey}
-                    filters={filterList[filterKey]}
+                    title={filterKey as FilterType}
+                    filters={filters[filterKey]}
                 />
             ))}
         </div>
-    ); 
+    );
 }

@@ -15,7 +15,7 @@ type Filter = {
     date_end: string;
 };
 
-type newFilter = {
+type NewFilter = {
     filterType: 'tags' | 'address_name' | 'address_zipcode' | 'address_city',
     text: string
 };
@@ -36,7 +36,7 @@ const fetchCatalog = createAsyncThunk('catalog/fetchCatalog', async (_, { getSta
     return response; // This will be returned as the payload in the Redux action
 });
 
-const updateFilters = (newFilter: newFilter) => (dispatch: AppDispatch, getState: () => { catalog: CatalogState }) => {
+const updateFilters = (newFilter: NewFilter) => (dispatch: AppDispatch, getState: () => { catalog: CatalogState }) => {
     const state = getState(); 
     const updatedFilters = _.cloneDeep(state.catalog.filters) ?? {};
     const newFilterType = newFilter.filterType;

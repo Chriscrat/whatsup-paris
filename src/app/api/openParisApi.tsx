@@ -17,6 +17,15 @@ type Filter = {
     name: string;
 };
 
+const getLocale = (): string => {
+    if (typeof window !== 'undefined' && window.localStorage) {
+        return localStorage.getItem('locale') || 'fr';
+    }
+    return 'fr';
+};
+
+const locale = getLocale();
+
 type FilterList = { [key: string]: string[] };
 
 const getFormattedFilters = (filters: FilterList, view: string): string => {
@@ -44,7 +53,7 @@ const getFacetsList = async (): Promise<{ [key: string]: Filter[] }> => {
     const disjunctiveFilters = FILTERS_ENUM.map((filter, index) => (index >= 1 ? '&' : '?') + `disjunctive.${filter}=true`).join('');
     const dataset = '&dataset=que-faire-a-paris-';
     const timezone = '&timezone=Europe%2FParis';
-    const language = '&lang=fr';
+    const language = `&lang=${locale}`;
 
     const facetsApiUrl = `${FACETS_API}${disjunctiveFilters}`
         + '&facet=tags&facet=address_name&facet=address_zipcode&facet=address_city&facetsort.tags=alphanum&facetsort.address_name=alphanum'

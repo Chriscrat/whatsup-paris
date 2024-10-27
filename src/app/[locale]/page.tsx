@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Frame from '@/app/components/layouts/Frame';
 import SearchEngine from '@/app/components/searchEngine/SearchEngine';
-
+import Local from '@/app/components/local';
 import {useTranslations} from 'next-intl';
 
 const Page: React.FC = () => {
@@ -9,6 +9,7 @@ const Page: React.FC = () => {
 
     return (
         <div>
+            <Local/>
             <Frame className="relative">
                 <div
                     className="relative h-screen bg-fixed bg-center bg-cover"

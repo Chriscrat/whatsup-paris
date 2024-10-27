@@ -63,7 +63,7 @@ export default function CardEvent(props: CardEventProps) {
                 )}
             </div>
             <a 
-                className="group/event-button animate-pulse group-hover/card:flex hidden transition-all duration-500 bg-gradient-to-r to-green-200 via-orange-500 from-orange-500 bg-size-200 bg-pos-0 hover:bg-pos-100 text-md md:text-xs items-center flex-grow justify-around"
+                className="group/event-button group-hover/card:flex hidden transition-all duration-500 bg-gradient-to-r to-green-200 via-orange-500 from-orange-500 bg-size-200 bg-pos-0 hover:bg-pos-100 text-md md:text-xs items-center flex-grow justify-around"
                 href={props.url}
                 target="blank"
             >

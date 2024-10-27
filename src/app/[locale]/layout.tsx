@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import { ReduxProvider } from '@/app/store/reduxProvider';
 
 import {NextIntlClientProvider} from 'next-intl';
-import {getLocale, getMessages} from 'next-intl/server';
+import {getMessages} from 'next-intl/server';
+import {notFound} from 'next/navigation';
+import {routing} from '@/i18n/routing';
 
 import localFont from 'next/font/local';
 import '@/app/scss/globals.scss';
@@ -13,17 +15,17 @@ import Header from '@/app/components/layouts/Header';
 const ubuntu = localFont({
     src: [
         {
-            path: "./fonts/Ubuntu/Ubuntu-Regular.ttf",
+            path: "../fonts/Ubuntu/Ubuntu-Regular.ttf",
             weight: "400",
             style: "normal",
         },
         {
-            path: "./fonts/Ubuntu/Ubuntu-Medium.ttf",
+            path: "../fonts/Ubuntu/Ubuntu-Medium.ttf",
             weight: "700",
             style: "normal",
         },
         {
-            path: "./fonts/Ubuntu/Ubuntu-Bold.ttf",
+            path: "../fonts/Ubuntu/Ubuntu-Bold.ttf",
             weight: "900",
             style: "normal",
         },
@@ -34,7 +36,7 @@ const ubuntu = localFont({
 const numans = localFont({
     src: [
         {
-            path: "./fonts/Numans/Numans-Regular.ttf",
+            path: "../fonts/Numans/Numans-Regular.ttf",
             weight: "400",
             style: "normal",
         },
@@ -47,13 +49,19 @@ export const metadata: Metadata = {
     description: 'Site de tourisme sur Paris',
 };
 
-export default async function RootLayout({
+export default async function LocalLayout({
     children,
+    params
 }: {
     children: React.ReactNode;
+    params: Promise<{locale: string}>;
 }) {
+    const { locale } = await params;
 
-    const locale = await getLocale();
+    // Ensure that the incoming `locale` is valid
+    if (!routing.locales.includes(locale as any)) {
+        notFound();
+    }
 
     // Providing all messages to the client
     // side is the easiest way to get started

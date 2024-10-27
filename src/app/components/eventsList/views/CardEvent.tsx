@@ -6,7 +6,6 @@ type CardEventProps = {
     dateStart: string,
     dateEnd: string,
     description: string,
-    className?: string,
 };
 
 export default function CardEvent(props: CardEventProps) {

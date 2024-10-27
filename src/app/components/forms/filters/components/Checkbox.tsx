@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateFilters } from '@/app/store/slices/catalogSlice';
 import { RootState, AppDispatch } from '@/app/store/eventList';
+
 interface CheckboxFilterProps {
     text: string;
     filterType: 'tags' | 'address_name' | 'address_zipcode' | 'address_city';
@@ -53,7 +54,7 @@ export default function CheckboxFilter(props: CheckboxFilterProps) {
                     </svg>
                 </span>
             </label>
-            {props.text}
+            { props.text }
         </div>
     );
 }

@@ -1,0 +1,13 @@
+{
+    "searchEngine": {
+        "title": "Welcome",
+        "description": "Looking for inspiration for your Paris outings? You've come to the right place! Discover the events, places and activities not to be missed in the French capital.",
+        "filters": {
+            "title": "Filters",
+            "tags": "Keywords",
+            "address_name": "Place",
+            "address_zipcode": "Postal code",
+            "address_city": "City"
+        }
+    }
+}

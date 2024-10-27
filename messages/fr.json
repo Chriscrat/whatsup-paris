@@ -1,0 +1,13 @@
+{
+    "searchEngine": {
+        "title": "Bienvenue",
+        "description": "En manque d'inspiration pour vos sorties à Paris ? Vous êtes au bon endroit ! Découvrez les événements, les lieux et les activités à ne pas manquer dans la capitale française.",
+        "filters": {
+            "title": "Filtres",
+            "tags": "Mots-clés",
+            "address_name": "Lieu",
+            "address_zipcode": "Code postal",
+            "address_city": "Ville"
+        }
+    }
+}

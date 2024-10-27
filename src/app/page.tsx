@@ -2,7 +2,11 @@ import Image from 'next/image';
 import Frame from '@/app/components/layouts/Frame';
 import SearchEngine from '@/app/components/searchEngine/SearchEngine';
 
+import {useTranslations} from 'next-intl';
+
 const Page: React.FC = () => {
+    const t = useTranslations('searchEngine');
+
     return (
         <div>
             <Frame className="relative">
@@ -39,12 +43,11 @@ const Page: React.FC = () => {
             </Frame>
 
             <Frame
-                title="Bienvenue"
+                title={t('title')}
                 className="relative py-10 px-4 sm:p-12 xs:p-12"
             >
                 <p className="text-lg py-4">
-                    En manque d&apos;inspiration pour vos sorties à Paris ? Vous êtes au bon endroit ! Découvrez les événements, les lieux
-                    et les activités à ne pas manquer dans la capitale française.
+                    { t('description') }
                 </p>
 
                 <div className="w-full h-full pt-8">

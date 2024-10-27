@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import Checkbox from '@/app/components/forms/filters/components/Checkbox';
 
+import {useTranslations} from 'next-intl';
+
 interface GroupCheckboxFilterProps {
     title: 'tags' | 'address_name' | 'address_zipcode' | 'address_city',
     filters: Array<{ name: string }>,
@@ -16,9 +18,12 @@ export default function GroupCheckboxFilter(props: GroupCheckboxFilterProps) {
         setDisplayMore(prevState => !prevState);
     };
 
+    const t = useTranslations('searchEngine');
+    const filterText = t(`filters.${props.title}`);
+
     return (
         <div className="flex flex-col py-4">
-            <h2 className='text-xl text-accent pb-2'>{props.title}</h2>
+            <h2 className='text-xl text-accent pb-2'>{ filterText }</h2>
             {props.filters.map((filter, index) => (
                 <Checkbox
                     key={index}
